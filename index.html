@@ -53,12 +53,6 @@
                 </div>
                 <div class="photo-placeholder">
                     <img src="profile.png" alt="Esam Sharfeldin" onerror="this.style.display='none'">
-                    <i class="user-icon"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48"
-                            viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-user">
-                            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg></i>
                 </div>
             </div>
         </div>
@@ -227,7 +221,7 @@
                                 <ul class="compact-list">
                                     <li>Managed IAM operations in enterprise environments (PMU, Kingfisher).</li>
                                     <li>Implemented and maintained provisioning workflows in IBM ISIM.</li>
-                                    <li>Handled **L2/L3 incident resolution and production support.</li>
+                                    <li>Handled L2/L3 incident resolution and production support.</li>
                                     <li>Integrated IAM systems with LDAP, Active Directory, and internal directories.
                                     </li>
                                     <li>Developed connectors and integrations using ITDI (Tivoli Directory Integrator).
@@ -251,7 +245,7 @@
                                     <li>Built scalable APIs and real-time features (chat, notifications).</li>
                                     <li>Implemented authentication and security best practices.</li>
                                     <li>Managed end-to-end product lifecycle (design, dev, deployment).</li>
-                                    <li>Applied **DevOps practices** (CI/CD, Docker, cloud infrastructure).</li>
+                                    <li>Applied DevOps practices (CI/CD, Docker, cloud infrastructure).</li>
                                 </ul>
                             </div>
                         </div>
@@ -306,12 +300,12 @@
         <script>
             // Hide the user icon if the profile photo is found and loaded
             const img = document.querySelector('.photo-placeholder img');
-            const icon = document.querySelector('.user-icon');
-            if (img) {
-                img.onload = () => {
-                    if (icon) icon.style.display = 'none';
-                };
-            }
+            //const icon = document.querySelector('.user-icon');
+            // if (img) {
+            //     img.onload = () => {
+            //         if (icon) icon.style.display = 'none';
+            //     };
+            // }
         </script>
     </div>
 </body>

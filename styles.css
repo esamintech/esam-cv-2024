@@ -21,7 +21,7 @@ body {
     background-color: #f1f5f9;
     font-family: var(--font-sans);
     color: var(--text-main);
-    line-height: 1.4;
+    line-height: 1.35;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -44,7 +44,7 @@ body {
 .blue-header {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
     color: #ffffff;
-    padding: 35px 45px;
+    padding: 28px 40px;
     position: relative;
 }
 
@@ -55,17 +55,17 @@ body {
 }
 
 .header-text h1 {
-    font-size: 26pt;
+    font-size: 24pt;
     font-weight: 800;
     letter-spacing: -0.03em;
     margin-bottom: 2px;
 }
 
 .subtitle {
-    font-size: 13pt;
+    font-size: 12pt;
     font-weight: 500;
     opacity: 0.9;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
 }
 
 .header-info-grid {
@@ -85,7 +85,7 @@ body {
 .header-info-grid a {
     color: #ffffff;
     text-decoration: none;
-    border-bottom: 1px border transparent;
+    border-bottom: 1px solid transparent;
 }
 
 .header-info-grid a:hover { border-bottom-color: #ffffff; }
@@ -94,15 +94,13 @@ body {
     width: 110px;
     height: 110px;
     flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.15);
-    border: 3px solid rgba(255, 255, 255, 0.8);
+    border: 3px solid rgba(255, 255, 255, 1);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
 }
 
 .photo-placeholder img {
@@ -135,9 +133,10 @@ body {
     background: #ffffff;
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 16px 20px;
-    margin-bottom: 12px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
     box-shadow: var(--card-shadow);
+    page-break-inside: avoid;
 }
 
 .section-title {
@@ -243,10 +242,11 @@ body {
     content: '';
     position: absolute;
     left: 0;
-    top: 5px;
-    bottom: 5px;
+    top: 12px;
+    bottom: 15px;
     width: 2px;
     background: var(--border);
+    z-index: 1;
 }
 
 .timeline-item {
@@ -263,13 +263,30 @@ body {
     background: #ffffff;
     border: 2px solid var(--border);
     border-radius: 50%;
-    box-shadow: 0 0 0 4px #ffffff;
+    z-index: 2;
+}
+
+/* Robust white masking ring for PDF - avoids 'hairline' border artifacts */
+.timeline-dot::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: #ffffff;
+    border-radius: 50%;
+    z-index: -1;
 }
 
 .timeline-item.active .timeline-dot {
     border-color: var(--accent);
     background: var(--accent);
-    box-shadow: 0 0 0 4px #ffffff, 0 0 10px rgba(37, 99, 235, 0.3);
+}
+
+/* Also ensure active dot has the white mask */
+.timeline-item.active .timeline-dot::after {
+    background: #ffffff;
 }
 
 .item-head {
@@ -279,18 +296,18 @@ body {
     margin-bottom: 2px;
 }
 
-.item-head h3 { font-size: 11pt; font-weight: 800; color: var(--primary); }
-.date { font-size: 8.5pt; color: var(--accent); font-weight: 700; }
-.org { font-size: 9pt; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
-.desc { font-size: 9pt; color: var(--text-muted); line-height: 1.5; margin-bottom: 8px; }
+.item-head h3 { font-size: 10.5pt; font-weight: 800; color: var(--primary); }
+.date { font-size: 8pt; color: var(--accent); font-weight: 700; }
+.org { font-size: 8.5pt; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
+.desc { font-size: 8.5pt; color: var(--text-muted); line-height: 1.4; margin-bottom: 6px; }
 
 /* Education */
-.edu-item { margin-bottom: 12px; }
+.edu-item { margin-bottom: 10px; page-break-inside: avoid; }
 .edu-head { display: flex; justify-content: space-between; align-items: baseline; }
 .edu-head h3 { font-size: 10pt; font-weight: 800; color: var(--primary); }
-.school { font-size: 9pt; font-weight: 600; color: var(--text-muted); }
+.school { font-size: 8.5pt; font-weight: 600; color: var(--text-muted); }
 
-.summary-text p { font-size: 9.5pt; color: var(--text-muted); line-height: 1.5; }
+.summary-text p { font-size: 9pt; color: var(--text-muted); line-height: 1.4; }
 .summary-text p strong { color: var(--primary); }
 
 .compact-list {
@@ -300,12 +317,12 @@ body {
 }
 
 .compact-list li {
-    font-size: 8.5pt;
+    font-size: 8.2pt;
     color: var(--text-muted);
     position: relative;
     padding-left: 14px;
-    margin-bottom: 3px;
-    line-height: 1.3;
+    margin-bottom: 2px;
+    line-height: 1.25;
 }
 
 .compact-list li::before {
@@ -323,32 +340,66 @@ body {
 
 /* A4 Print Optimization */
 @media print {
+    /* Absolute suppression of PDF rendering artifacts */
     * {
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
+        outline: none !important;
+        box-shadow: none !important;
     }
+
     body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
         margin: 0;
         padding: 0;
-        background: none !important;
+        background: #ffffff !important;
     }
     .cv-container {
         width: 210mm !important;
         height: 297mm !important;
         margin: 0 !important;
         box-shadow: none !important;
+        background: #ffffff !important;
     }
     .blue-header {
-        background-color: #0f172a !important;
-        /* Forced color trick: box-shadow often prints even when backgrounds are off */
-        box-shadow: inset 0 0 0 1000px #0f172a !important;
+        background: linear-gradient(135deg, #0f172a, #1e293b) !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
         color: #ffffff !important;
         padding: 25px 35px !important;
     }
-    /* ... keep other print styles ... */
+    .photo-placeholder {
+        border-color: #ffffff !important;
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+    .sidebar { 
+        background: #ffffff !important;
+        padding: 20px 15px !important; 
+    }
+    .card {
+        break-inside: avoid;
+        margin-bottom: 10px !important;
+        padding: 14px 18px !important;
+    }
     .progress-bar {
         background: #2563eb !important;
         box-shadow: inset 0 0 0 1000px #2563eb !important;
+    }
+    .circle {
+        border-color: #2563eb !important;
+    }
+    .timeline-item.active .timeline-dot {
+        background: #2563eb !important;
+        border-color: #2563eb !important;
+        z-index: 3 !important;
+    }
+
+    /* Suppress hairline 'black line' artifacts on the white mask */
+    .timeline-dot::after {
+        background: #ffffff !important;
+        border: 1px solid #ffffff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 }
 
