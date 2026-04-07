@@ -1,0 +1,369 @@
+:root {
+    --primary: #0f172a;
+    --primary-light: #1e40af;
+    --accent: #2563eb;
+    --text-main: #1e293b;
+    --text-muted: #475569;
+    --bg-page: #f8fafc;
+    --bg-sidebar: #ffffff;
+    --border: #e2e8f0;
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f1f5f9;
+    font-family: var(--font-sans);
+    color: var(--text-main);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+}
+
+.cv-container {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 20px auto;
+    background: #ffffff;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+@media print {
+    body { background: none; }
+    .cv-container { margin: 0; box-shadow: none; width: 100%; height: 100%; }
+}
+
+/* Header Elevation */
+.blue-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: #ffffff;
+    padding: 35px 45px;
+    position: relative;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-text h1 {
+    font-size: 26pt;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin-bottom: 2px;
+}
+
+.subtitle {
+    font-size: 13pt;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-bottom: 18px;
+}
+
+.header-info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 8.5pt;
+}
+
+.header-info-grid span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.9;
+}
+
+.header-info-grid a {
+    color: #ffffff;
+    text-decoration: none;
+    border-bottom: 1px border transparent;
+}
+
+.header-info-grid a:hover { border-bottom-color: #ffffff; }
+
+.photo-placeholder {
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+.photo-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-icon { font-size: 40px; opacity: 0.3; position: absolute; z-index: 1; }
+
+/* Layout Grid */
+.layout-grid {
+    display: grid;
+    grid-template-columns: 265px 1fr;
+    background: var(--bg-page);
+}
+
+.sidebar {
+    background: #ffffff;
+    border-right: 1px solid var(--border);
+    padding: 30px 22px;
+}
+
+.main-content {
+    padding: 25px;
+}
+
+/* Sections & Cards */
+.card {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    box-shadow: var(--card-shadow);
+}
+
+.section-title {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.content-heading {
+    font-size: 11.5pt;
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.title-icon { color: var(--accent); }
+
+/* Skills & Meters Elevation */
+.skill-meter { margin-bottom: 12px; }
+.skill-meter span { font-size: 8pt; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 4px; }
+
+.progress {
+    height: 7px;
+    background: #f1f5f9;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+    border-radius: 4px;
+}
+
+/* Languages Circle */
+.lang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.lang-circle { text-align: center; }
+
+.circle {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 8px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent) calc(var(--percent) * 1%), #f1f5f9 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 8.5pt;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.circle::before {
+    content: '';
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    background: #ffffff;
+    border-radius: 50%;
+}
+
+.circle span { position: relative; z-index: 1; }
+.lang-circle p { font-size: 8pt; font-weight: 600; color: var(--text-muted); }
+
+/* Tag Cloud Elevation */
+.tech-group h3 { font-size: 8pt; font-weight: 800; margin-bottom: 8px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 15px; }
+
+.tag-cloud span {
+    background: #f1f5f9;
+    color: var(--primary);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 7.5pt;
+    font-weight: 700;
+    border: 1px solid var(--border);
+}
+
+.tag-cloud.small span { font-size: 7pt; padding: 2px 8px; }
+
+/* Timeline Elevation */
+.timeline {
+    position: relative;
+    padding-left: 25px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 2px;
+    background: var(--border);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -31px;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    background: #ffffff;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px #ffffff;
+}
+
+.timeline-item.active .timeline-dot {
+    border-color: var(--accent);
+    background: var(--accent);
+    box-shadow: 0 0 0 4px #ffffff, 0 0 10px rgba(37, 99, 235, 0.3);
+}
+
+.item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2px;
+}
+
+.item-head h3 { font-size: 11pt; font-weight: 800; color: var(--primary); }
+.date { font-size: 8.5pt; color: var(--accent); font-weight: 700; }
+.org { font-size: 9pt; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
+.desc { font-size: 9pt; color: var(--text-muted); line-height: 1.5; margin-bottom: 8px; }
+
+/* Education */
+.edu-item { margin-bottom: 12px; }
+.edu-head { display: flex; justify-content: space-between; align-items: baseline; }
+.edu-head h3 { font-size: 10pt; font-weight: 800; color: var(--primary); }
+.school { font-size: 9pt; font-weight: 600; color: var(--text-muted); }
+
+.summary-text p { font-size: 9.5pt; color: var(--text-muted); line-height: 1.5; }
+.summary-text p strong { color: var(--primary); }
+
+.compact-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 5px;
+}
+
+.compact-list li {
+    font-size: 8.5pt;
+    color: var(--text-muted);
+    position: relative;
+    padding-left: 14px;
+    margin-bottom: 3px;
+    line-height: 1.3;
+}
+
+.compact-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.compact-list li strong {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* A4 Print Optimization */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        background: none !important;
+    }
+    .cv-container {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+    }
+    .blue-header {
+        background-color: #0f172a !important;
+        /* Forced color trick: box-shadow often prints even when backgrounds are off */
+        box-shadow: inset 0 0 0 1000px #0f172a !important;
+        color: #ffffff !important;
+        padding: 25px 35px !important;
+    }
+    /* ... keep other print styles ... */
+    .progress-bar {
+        background: #2563eb !important;
+        box-shadow: inset 0 0 0 1000px #2563eb !important;
+    }
+}
+
+/* Tightening for 1-page fit */
+.card { margin-bottom: 10px; padding: 15px; }
+.section-title { margin-bottom: 10px; }
+.content-heading { margin-bottom: 10px; }
+.skill-meter { margin-bottom: 8px; }
+.tech-group { margin-bottom: 10px; }
+.timeline-item { margin-bottom: 12px; }
+.edu-item { margin-bottom: 8px; }
+
+/* Fine-tuning for 1-page fit */
+@media screen and (max-height: 1000px) {
+    .cv-container {
+        padding: 30px;
+    }
+}
