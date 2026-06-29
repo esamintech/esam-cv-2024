@@ -93,6 +93,30 @@ body {
     line-height: 1.35;
 }
 
+.lang-switch {
+    font-family: var(--font-sans);
+    font-size: 9pt;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
+    padding: 6px 12px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.lang-switch:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+@media print {
+    .lang-switch {
+        display: none !important;
+    }
+}
+
 /* Header Elevation */
 .blue-header {
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
